@@ -1,0 +1,35 @@
+xtrarwraw
+* root kasutajana:
+installi - apt-get install git
+* tavakasutajana:
+
+a) seadista - määra kasutajanimi, email, editor
+git config --global user.name "Ees ja Perenimi"
+git config --global user.email kasutaja@nimi
+git config --global core.editor nano
+
+b) loo katalog, kus hakkad skriptimia
+mkdir skriptimine
+
+c) sisene antud kausta
+cd skriptimine
+
+d) tekita lokaalne repositoorium git süsteemi jaoks antud kaustas
+ git init
+
+e) git remote add nimi aadress
+git remote add RSHA https://github.com/kasutajanimi/reponimi.git
+
+f) git remote kontroll
+ git remote -v
+
+põhikasutamine:
+
+a) pane fail jälgimisele:
+git add failinimi
+
+b) lisa kirjelduse muudatuse kohta
+git commint -m "kirjelduse näiteks"
+
+c) lisa kaugerepositooriumi 
+git push -u RSHA master
