@@ -1,0 +1,31 @@
+#!/bin/bash
+#
+# kasutaja public kausata lisamise skript
+# kasutaja nimi tuleb anda slripti parameetrina
+#
+# võime lisada ka kasutusjuhendi
+# käsurea kaudu parameetrite arv on $# sees olev number, meie korral peab olema 1 parameeter - kasutajanimi
+# aga antud parameeter ei ole lisatud - tuleb juedada kasutajat, kuidas skriptiga tööd teha
+if [ $# -ne 1]; then
+	echo "Kasutusjuhend: $0 kasutajanimi"
+else
+# defineerimie vajalik muutuja kasutajanimi salvestamiseks
+	kasutajanimi=$1 # kuna andmed edastatakse käsureal skripti parameetrina, siis need in $1 $2 jne
+	# lisame vajalik kataloog
+	#määrame vajalikud õigused
+## nüüd on ainult üks rida aga hästi pikk
+	mkdir /home/$kasutajanimi/public && chown -R $kasutajanimi:$kasutajanimi /home/$kasutajanimi/public && chmod 751 /home/$kasutajanimi/public
+## pika rea lõpp
+#
+#
+# põhmõtteliselt nagu kõik
+# $? -viimase! käsu väljund staatus, 0 kui on korras,muu kui on probleem
+if [ $? -eq 0 ]; then
+echo "Kasutaja nimega $kasutajanimi kodukaustas public loodud"
+cat /etc/passwd | grep $kasutajanimi
+ls -la /home/$kasutajanimi
+else
+echo "probleem kasutaja $kasutajanimi lisamisega"
+echo "probleemi kood on $?"
+fi
+fi
